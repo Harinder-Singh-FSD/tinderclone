@@ -1,15 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import User from "./model/userModel.js";
+import dotenv from "dotenv";
 import Cors from "cors";
 const app = express();
+dotenv.config();
 app.use(Cors());
 app.use(express.json());
 const PORT = process.env.PORT || 5000;
-const mongodb_uri =
-  "mongodb+srv://harryadmin:harry1234@cluster0.xqkuy.mongodb.net/tinderdb?retryWrites=true&w=majority";
+
 mongoose.connect(
-  mongodb_uri,
+  process.env.mongodb_uri,
   { useUnifiedTopology: true, useNewUrlParser: true },
   (err) => {
     if (err) throw new Error("db not connected");
